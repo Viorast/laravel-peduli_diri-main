@@ -1,8 +1,13 @@
 [phases.setup]
-nixPkgs = ["php81", "composer", "mysql", "nodejs", "npm"]
+nixPkgs = ["php81", "mysql", "nodejs", "npm"]
 
 [phases.install]
 cmds = [
+  # Install Composer secara manual
+  "curl -sS https://getcomposer.org/installer | php",
+  "mv composer.phar /usr/local/bin/composer",
+
+  # Install dependency Laravel
   "composer install --no-interaction --prefer-dist --optimize-autoloader"
 ]
 
